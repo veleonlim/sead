@@ -53,9 +53,9 @@ const domains = [
 ];
 
 const labels = [
-  "CIT-Infra",
-  "CIT-Tech",
-  "CIT-HR"
+  "Domain Local",
+  "Universal",
+  "Global"
 ];
 
 const formSchema = z.object({
@@ -69,7 +69,7 @@ const formSchema = z.object({
   profileImage: z.any().optional(),
 });
 
-export default function CreateUserPage() {
+export default function CreateGroupPage() {
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const form = useForm({
@@ -106,7 +106,7 @@ export default function CreateUserPage() {
       <div className="mx-auto space-y-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl font-medium">User Details</CardTitle>
+            <CardTitle className="text-2xl font-medium">Group Details</CardTitle>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -121,7 +121,7 @@ export default function CreateUserPage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium">
-                          First Name
+                          Group Name
                         </FormLabel>
                         <FormControl>
                           <Input
@@ -134,25 +134,7 @@ export default function CreateUserPage() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium">
-                          Last Name
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Doe"
-                            {...field}
-                            className="bg-white"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+              
                 </div>
 
                 <FormField
@@ -161,7 +143,7 @@ export default function CreateUserPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-sm font-medium">
-                        SamAccount Name
+                        Group Description
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -175,31 +157,13 @@ export default function CreateUserPage() {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="userLogonName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-medium">
-                        User Logon Name
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="johndoe"
-                          {...field}
-                          className="bg-white"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+               
                 <FormField
                   control={form.control}
                   name="domain"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="grid">Group</FormLabel>
+                      <FormLabel className="grid">Group Type</FormLabel>
                       <DropdownMenu open={open} onOpenChange={setOpen}>
                         <DropdownMenuTrigger asChild>
                           <FormControl>
@@ -222,7 +186,7 @@ export default function CreateUserPage() {
                           {/* DropdownMenuSub for applying label */}
                           <DropdownMenuSub>
                             <DropdownMenuSubTrigger>
-                              Guardians
+                              Group Scope (Security)
                             </DropdownMenuSubTrigger>
                             <DropdownMenuSubContent className="p-0">
                               <Command>

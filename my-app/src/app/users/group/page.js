@@ -1,19 +1,50 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Upload, Check, ChevronsUpDown } from "lucide-react";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
   Select,
@@ -22,17 +53,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { 
-  Filter, 
-  Download, 
+  Filter,
+  Download,
   UserPlus,
   Users,
   Search,
@@ -41,13 +65,13 @@ import {
   UserMinus,
   Shield,
   Lock,
-  Key
+  Key,
 } from "lucide-react";
 
 export default function UsersListPage() {
   const [selectedDomain, setSelectedDomain] = useState("all");
   const [selectedUsers, setSelectedUsers] = useState(new Set());
-  
+
   const users = [
     {
       id: "1",
@@ -58,7 +82,7 @@ export default function UsersListPage() {
       status: "Active",
       lastLogin: "2024-02-11 09:30",
       domain: "galaxis.com",
-      groups: ["IT Admins", "VPN Users"]
+      groups: ["IT Admins", "VPN Users"],
     },
     {
       id: "2",
@@ -69,7 +93,7 @@ export default function UsersListPage() {
       status: "Active",
       lastLogin: "2024-02-11 08:15",
       domain: "shopee.com",
-      groups: ["HR Team", "Policy Makers"]
+      groups: ["HR Team", "Policy Makers"],
     },
     {
       id: "3",
@@ -80,7 +104,7 @@ export default function UsersListPage() {
       status: "Inactive",
       lastLogin: "2024-02-10 17:45",
       domain: "garena.com",
-      groups: ["Finance Team"]
+      groups: ["Finance Team"],
     },
   ];
 
@@ -98,7 +122,7 @@ export default function UsersListPage() {
     if (selectedUsers.size === users.length) {
       setSelectedUsers(new Set());
     } else {
-      setSelectedUsers(new Set(users.map(user => user.id)));
+      setSelectedUsers(new Set(users.map((user) => user.id)));
     }
   };
 
@@ -109,14 +133,19 @@ export default function UsersListPage() {
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-semibold">Directory Users</h1>
-            <p className="text-sm text-gray-500 mt-1">Manage users and group assignments</p>
+            <p className="text-sm text-gray-500 mt-1">
+              Manage users and group assignments
+            </p>
           </div>
           <div className="flex gap-2">
             <Button className="text-white bg-blue-500 text-white hover:bg-blue-600">
               <UserPlus className="mr-2 h-4 w-4" />
               Add New User
             </Button>
-            <Button className="text-black bg-white hover:bg-gray-50" variant="outline">
+            <Button
+              className="text-black bg-white hover:bg-gray-50"
+              variant="outline"
+            >
               <Users className="mr-2 h-4 w-4" />
               Manage Groups
             </Button>
@@ -129,13 +158,38 @@ export default function UsersListPage() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="font-medium">{selectedUsers.size} users selected</span>
+                  <span className="font-medium">
+                    {selectedUsers.size} users selected
+                  </span>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    <Users className="mr-2 h-4 w-4" />
-                    Add to Group
-                  </Button>
+          
+          
+
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                     <Button variant="outline" size="sm">
+                     <Users className="mr-2 h-4 w-4" />Add to Group</Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start" className="w-[200px]">
+                        {/* DropdownMenuSub for applying label */}
+                        <DropdownMenuSub>
+                          <DropdownMenuSubTrigger>
+                            Guardians
+                          </DropdownMenuSubTrigger>
+                          <DropdownMenuSubContent className="p-0">
+                            <DropdownMenuPortal>
+                              <DropdownMenuSubContent>
+                                <DropdownMenuItem>CIT-Tech</DropdownMenuItem>
+                                <DropdownMenuItem>CIT-Admin</DropdownMenuItem>
+                                <DropdownMenuItem>CIT-HR</DropdownMenuItem>
+                              </DropdownMenuSubContent>
+                            </DropdownMenuPortal>
+                          </DropdownMenuSubContent>
+                        </DropdownMenuSub>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+           
                   <Button variant="outline" size="sm">
                     <UserMinus className="mr-2 h-4 w-4" />
                     Remove from Group
@@ -159,16 +213,24 @@ export default function UsersListPage() {
           <CardContent className="p-6">
             <div className="flex flex-wrap gap-4 items-end">
               <div className="flex-1 min-w-[200px]">
-                <label className="text-sm font-medium mb-2 block">Search Users</label>
+                <label className="text-sm font-medium mb-2 block">
+                  Search Users
+                </label>
                 <div className="relative">
                   <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-                  <Input placeholder="Search by name, email, group..." className="pl-8" />
+                  <Input
+                    placeholder="Search by name, email, group..."
+                    className="pl-8"
+                  />
                 </div>
               </div>
-              
+
               <div className="w-[200px]">
                 <label className="text-sm font-medium mb-2 block">Domain</label>
-                <Select value={selectedDomain} onValueChange={setSelectedDomain}>
+                <Select
+                  value={selectedDomain}
+                  onValueChange={setSelectedDomain}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select domain" />
                   </SelectTrigger>
@@ -252,7 +314,10 @@ export default function UsersListPage() {
               </TableHeader>
               <TableBody>
                 {users.map((user) => (
-                  <TableRow key={user.id} className="cursor-pointer hover:bg-gray-50">
+                  <TableRow
+                    key={user.id}
+                    className="cursor-pointer hover:bg-gray-50"
+                  >
                     <TableCell>
                       <Checkbox
                         checked={selectedUsers.has(user.id)}
@@ -262,11 +327,18 @@ export default function UsersListPage() {
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <Avatar className="h-8 w-8">
-                          <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                          <AvatarFallback>
+                            {user.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
                           <div className="font-medium">{user.name}</div>
-                          <div className="text-sm text-gray-500">{user.email}</div>
+                          <div className="text-sm text-gray-500">
+                            {user.email}
+                          </div>
                         </div>
                       </div>
                     </TableCell>
@@ -274,7 +346,11 @@ export default function UsersListPage() {
                     <TableCell>
                       <div className="flex gap-1 flex-wrap">
                         {user.groups.map((group) => (
-                          <Badge key={group} variant="outline" className="text-xs">
+                          <Badge
+                            key={group}
+                            variant="outline"
+                            className="text-xs"
+                          >
                             {group}
                           </Badge>
                         ))}
@@ -283,9 +359,13 @@ export default function UsersListPage() {
                     <TableCell>{user.domain}</TableCell>
                     <TableCell>
                       <Badge
-                        variant={user.status === "Active" ? "success" : "secondary"}
+                        variant={
+                          user.status === "Active" ? "success" : "secondary"
+                        }
                         className={`capitalize ${
-                          user.status === "Active" ? "text-green-700" : "text-gray-500"
+                          user.status === "Active"
+                            ? "text-green-700"
+                            : "text-gray-500"
                         }`}
                       >
                         {user.status}
@@ -297,14 +377,13 @@ export default function UsersListPage() {
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" className="h-8 w-8 p-0">
                             <MoreHorizontal className="h-4 w-4" />
+                            <Users className="mr-2 h-4 w-4" />
+                            Add to Group
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem>
-                            <Users className="mr-2 h-4 w-4" />
-                            Add to Group
-                          </DropdownMenuItem>
+                          <DropdownMenuItem></DropdownMenuItem>
                           <DropdownMenuItem>
                             <UserMinus className="mr-2 h-4 w-4" />
                             Remove from Group

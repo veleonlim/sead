@@ -41,6 +41,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
 
 export default function Dashboard() {
@@ -49,17 +60,17 @@ export default function Dashboard() {
   return (
     <div className="border-b">
       <div className="max-w-screen-2xl mx-auto px-4">
-        <div className="h-16 flex items-center justify-between">
+        {/* <div className="h-16 flex items-center justify-between"> */}
           {/* Left side - Logo/Brand */}
-          <div className="flex items-center space-x-4">
+          {/* <div className="flex items-center space-x-4">
             <Building className="h-6 w-6 text-primary" />
             <span className="font-semibold text-lg">Active Directory</span>
-          </div>
+          </div> */}
 
           {/* Right side - Actions */}
-          <div className="flex items-center space-x-6">
+          {/* <div className="flex items-center space-x-6">
             {/* Domain Selector with improved styling */}
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-500">Current Domain:</span>
               <Select>
                 <SelectTrigger className="w-[180px] border-gray-200">
@@ -76,20 +87,20 @@ export default function Dashboard() {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
+            </div> */} 
 
             {/* Notifications */}
-            <div className="relative">
+            {/* <div className="relative">
               <Button variant="ghost" size="icon" className="relative">
                 <Bell className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center">
                   3
                 </span>
               </Button>
-            </div>
+            </div> */}
 
             {/* User Profile */}
-            <DropdownMenu>
+            {/* <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center space-x-3 hover:bg-gray-50 rounded-lg p-2 transition-colors duration-200">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="bg-primary/10 text-primary">
@@ -117,12 +128,12 @@ export default function Dashboard() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-        </div>
+          </div> */}
+        </div> 
        
-      <Separator className="my-4" />
+      {/* <Separator className="my-4" /> */}
     
-      </div>
+      {/* </div> */}
 
       {/* Hero Section with Background */}
       <div className="relative overflow-hidden">
