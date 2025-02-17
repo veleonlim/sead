@@ -6,6 +6,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "./components/app-sidebar";
 import { Button } from "@/components/ui/button";
 import { useState } from "react"; // Import useState
+import ChatPopup from "./components/chatbot";
+// import { useChat } from '@ai-sdk/react';
 import {
   Building,
   Bell,
@@ -127,6 +129,8 @@ export default function RootLayout({ children }) {
               <main className="flex-1 bg-gradient-to-b from-white to-[#1c6efc]/15 overflow-auto p-6">
                 <SidebarTrigger />
                 {children}
+                <ChatPopup /> {/* Show chatbot globally */}
+
               </main>
             </div>
           </SidebarProvider>

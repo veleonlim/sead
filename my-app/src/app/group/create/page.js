@@ -71,6 +71,18 @@ const formSchema = z.object({
 
 export default function CreateGroupPage() {
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [script, setScript] = useState("");
+
+  const handleSubmit = () => {
+    if (script.trim()) {
+      console.log("Submitted Script:", script);
+      alert("PowerShell Script Submitted!");
+      setScript("");
+    } else {
+      alert("Please enter a PowerShell script.");
+    }
+  };
+
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -263,6 +275,39 @@ export default function CreateGroupPage() {
             </div>
           </CardContent>
         </Card>
+        <Card className="p-4 shadow-lg">
+      <CardHeader>
+        <CardTitle className="text-2xl font-medium">
+          Insert PowerShell Script
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {/* Script Input */}
+          <textarea
+            className="w-full p-2 border rounded-lg font-mono text-sm bg-gray-100"
+            rows="8"
+            placeholder="Enter your PowerShell script here..."
+            value={script}
+            onChange={(e) => setScript(e.target.value)}
+          />
+          
+          {/* Submit Button */}
+          <Button 
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition"
+            onClick={handleSubmit}
+          >
+            Submit Script
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+
+
+
+
+
+
       </div>
     </div>
   );
